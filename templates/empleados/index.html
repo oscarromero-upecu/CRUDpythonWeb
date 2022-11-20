@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <title>inicio</title>
-</head>
-<body>
+{% include 'header.html' %}
+<br/>
+<a href="{{url_for('create')}}" class="btn btn-success">
+    Ingresar nuevo empleado
+</a>
+<br>
+<br>
+
 <table class="table table-light">
     <thead class="thead-light">
 
@@ -24,18 +23,20 @@
         {% for empleados in empleados %}
         <tr>
             <td>{{empleados[0]}}</td>
-            <td>{{empleados[3]}}</td>
+
+            <td>
+                <img class="img-thumbnail" width="100" src="uploads/{{empleados[3]}}" alt="">
+            </td>
+
             <td>{{empleados[1]}}</td>            
             <td>{{empleados[2]}}</td>            
             <td>
-                <a href="/edit/{{empleados[0]}}">Editar</a>
+                <a class="btn btn-warning" href="/edit/{{empleados[0]}}">Editar</a>
                 |
-                <a href="/destroy/{{empleados[0]}}">Eliminar</a>
+                <a onclick="return confirm('Esta seguro?')" class="btn btn-danger" href="/destroy/{{empleados[0]}}">Eliminar</a>
             </td>            
         </tr>
         {% endfor %}
     </tbody>
 </table>
-
-</body>
-</html>
+{% include 'footer.html' %}
